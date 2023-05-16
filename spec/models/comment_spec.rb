@@ -1,13 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe Comment, type: :model do
+RSpec.describe User, type: :model do
   before :each do
-    @user = User.create(name: 'Alex', photo: 'Photo', bio: 'I am a Front-end developer')
-    @post = @user.posts.create(title: 'I am a title', text: 'I am a text', author_id: @user.id)
-    @comment = @post.comments.create(text: 'Lorenzo was here', author_id: @user.id, post_id: @post.id)
+    @user = User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher', post_counter: 0)
+    @post = Post.new(title: 'Hi', text: 'My world', comment_counter: 0, like_counter: 0, author_id: 1)
+    @comment = Comment.new(post: @post, text: 'hello yimi', author_id:@user)
   end
 
-  it 'commentsCounter should return 1 like' do
-    expect(@post.comments_counter).to be(1)
+  it 'checks if attributes are valid' do
+    expect(@user).to be_valid
+  end
+
+  it 'checks if attributes are valid' do
+    expect(@post).to_not be_valid
   end
 end

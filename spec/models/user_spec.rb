@@ -2,28 +2,35 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before :each do
-    @user = User.new(name: 'Alex', photo: 'Photo', bio: 'I am a Front-end developer')
-    @user.save
+    @user = User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher', post_counter: 1)
   end
 
-  it 'name should be present' do
+  it 'name must not be blank' do
     @user.name = nil
     expect(@user).to_not be_valid
   end
 
-  it 'postCounter should be a integer greater or equal to 0' do
-    @user.posts_counter = nil
+  it 'check if posts counter is an integer' do
+    @user.post_counter = 'ham'
     expect(@user).to_not be_valid
   end
 
-  it 'recentPosts should be return 3 post' do
-    (1..5).each do |_id|
-      @user.posts.create(
-        author_id: @user.id,
-        title: 'This is a title',
-        text: 'This is a text'
-      )
+  it 'checks if bio is present' do
+    @user.bio = 'hello'
+    expect(@user).to be_valid
+  end
+
+  describe 'check methods' do
+    before do
+      @user1 = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher',
+                           post_counter: 0)
+      5.times do
+        Post.create(title: 'Hi', text: 'My world', like_counter: 0, author_id: 1)
+      end
     end
-    expect(@user.recent_posts.length).to be(3)
+
+    it 'returns last three posts' do
+      expect(@user1.recent_posts).to match_array(@user1.posts.last(3))
+    end
   end
 end

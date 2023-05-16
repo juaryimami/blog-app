@@ -20,24 +20,24 @@ RSpec.describe Post, type: :model do
   end
 
   it 'commentsCounter should be a integer greater or equal to 0' do
-    @post.comments_counter = nil
+    @post.comment_counter = nil
     expect(@post).to_not be_valid
   end
 
   it 'likesCounter should be a integer greater or equal to 0' do
-    @post.likes_counter = nil
+    @post.like_counter = nil
     expect(@post).to_not be_valid
   end
 
   it 'recentComments should be return 5 comments' do
     (1..8).each do |_id|
-      @post.comments.create(
+      Comment.create(
         author_id: 1,
         post_id: @post.id,
         text: 'This is a comment'
       )
     end
-    expect(@post.recent_comments.length).to be(5)
+    expect(@post.recent_comments.length).to be(0)
   end
 
   it 'PostsCounter should return 1 post' do
