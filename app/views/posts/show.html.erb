@@ -1,15 +1,42 @@
-<article class="post-container">
-    <div class="post-header">
-        <h3><%= @post.title %> by <%= @user.name %></h3>
-        <div class="comment-like-container">
-            <p>Comments: <%= @post.comment_counter %></p>
-            <p>Likes:  <%= @post.like_counter %></p>
+<div class="container">
+    <article class="post-container">
+        <div class="d-flex flex-column align-items-center gap-2 mb-4 flex-sm-row justify-content-sm-between">
+            <h3 class="fs-5 fw-bold"><%= @post.title %> by <%= @user.name %></h3>
+            <div class="d-flex align-items-center gap-4">
+                <% if user_signed_in? %>
+                    <%= link_to  "/users/#{@user.id}/posts/#{@post.id}/likes", method: :post,  id: "like_btn" do %>
+                    <i class="fa fa-thumbs-up fs-3 pe-2 text-success"></i>
+                    <% end %>
+                <% end %>
+                <div class="d-flex align-items-center gap-4">
+                    <div class="d-flex flex-column">
+                        <p class="fs-6 fw-bold text-secondary m-0">Comments</p>
+                        <p class="fs-3 fw-bold m-0"><%= @post.comment_counter %></p>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <p class="fs-6 fw-bold text-secondary m-0">Likes</p>
+                        <p class="fs-3 fw-bold m-0"><%= @post.like_counter %></p>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    <% if can? :destroy, @post %>
+                    <%=link_to "Remove Post", user_post_path(@user,@post), method: :delete, class: "btn btn-success mb-4" %>
+                <% end %>
+                </div>
+            </div>
         </div>
-    </div>
-    <p><%= @post.text %></p>
-</article>
-<article class="post-container">
-    <% @post.comments.each do |comment| %>
-        <p>Username: <%= comment.text %></p>
-    <%end%>
-</article>
+        <p class="fs-6"><%= @post.text %></p>
+    </article>
+    <article class="post-container mb-4">
+        <% @post.comments.each do |comment| %>
+        <p class="fs-6 py-2 m-0"><span class="fw-bold"><%= comment.author.name %>:</span> <%= comment.text %></p>   
+            <% if can? :destroy, Comment.find_by(author_id: comment.author_id, post_id: comment.post_id)  %>
+                <%=link_to "Remove Comment", "#{@post.id}/comments/#{comment.id}", method: :delete %>
+            <%end%>
+        <%end%>
+    </article>
+   
+    <% if user_signed_in? %>
+        <%= render "comments/form" %>
+    <% end %>
+</div>
