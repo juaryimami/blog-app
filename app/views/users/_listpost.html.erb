@@ -1,5 +1,3 @@
-<%= render "posts/theuser" %>
-
 <% @list_of_posts.each do |post| %>
 <article class="post-container">
     <h3 class="title"><%= post.title %></h3>
@@ -8,10 +6,5 @@
         <p>Comments: <%= post.comment_counter %></p>
         <p>Likes:  <%= post.like_counter %></p>
     </div>
-</article>
-<article class="post-container">
-    <% post.recent_comments.each do |comment| %>
-        <p>Username: <%= comment.text %></p>
-    <%end%>
 </article>
 <%end%>
