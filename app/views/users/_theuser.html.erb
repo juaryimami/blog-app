@@ -1,14 +1,16 @@
 <article class="user-card">
     <div class="photo-container">
-        <%= @user.photo %>
+        <%= image_tag('cartoon_1.png', :alt => "user logo") %>
     </div>
     <div class="user-container">
-        <h2 class="user-name"><%= @user.name %></h2>
-        <p class="text">Number of posts: <%= @user.post_counter %></p>
+        <h2 class="fs-5 fw-bold"><%= @user.name %></h2>
+        <div class="d-flex flex-column align-items-start">
+            <p class="fs-6 fw-bold text-secondary m-0">Posts</p>
+            <p class="fs-3 fw-bold m-0"><%= @user.post_counter %></p>
+        </div>
     </div>
 </article>
 <div class="bio-container">
-    <h3 class="title">Bio</h3>
-    <p class="text"><%= @user.bio %></p>
-</div> 
-<%# # /home/juhar/snap/flutter/common/flutter %>
+    <h3 class="fs-5 fw-bold">Bio</h3>
+    <p class="fs-6"><%= @user.bio %></p>
+</div>

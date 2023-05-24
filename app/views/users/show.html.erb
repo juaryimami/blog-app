@@ -1,7 +1,9 @@
-<%= render "users/theuser" %>
+<div class="container">
+    <%= render "users/theuser" %>
 
-<%= render "users/listpost" %>
+    <%= render "users/listpost" %>
 
-<div class="btn-container">
-    <%= link_to "See all posts", "#{@user.id}/posts", class: "button" %>
+    <div class="btn-container mt-4">
+        <%= link_to "See all posts", "#{@user.id}/posts", class: "btn btn-success mb-4" %>
+    </div>
 </div>
