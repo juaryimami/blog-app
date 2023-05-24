@@ -2,13 +2,13 @@
     <article class="post-container">
         <div class="d-flex flex-column align-items-center gap-2 mb-4 flex-sm-row justify-content-sm-between">
             <h3 class="fs-5 fw-bold"><%= @post.title %> by <%= @user.name %></h3>
-            <div class="d-flex align-items-center gap-4">
+            <div class="d-flex align-items-center  gap-4">
                 <% if user_signed_in? %>
-                    <%= link_to  "/users/#{@user.id}/posts/#{@post.id}/likes", method: :post,  id: "like_btn" do %>
+                    <%= link_to  "/users/#{@user.id}/posts/#{@post.id}/likes", method: :post do %>
                     <i class="fa fa-thumbs-up fs-3 pe-2 text-success"></i>
                     <% end %>
                 <% end %>
-                <div class="d-flex align-items-center gap-4">
+                <div class="d-flex justify-content-end gap-4">
                     <div class="d-flex flex-column">
                         <p class="fs-6 fw-bold text-secondary m-0">Comments</p>
                         <p class="fs-3 fw-bold m-0"><%= @post.comment_counter %></p>
@@ -18,24 +18,15 @@
                         <p class="fs-3 fw-bold m-0"><%= @post.like_counter %></p>
                     </div>
                 </div>
-                <div class="pt-4">
-                    <% if can? :destroy, @post %>
-                    <%=link_to "Remove Post", user_post_path(@user,@post), method: :delete, class: "btn btn-success mb-4" %>
-                <% end %>
-                </div>
             </div>
         </div>
         <p class="fs-6"><%= @post.text %></p>
     </article>
     <article class="post-container mb-4">
         <% @post.comments.each do |comment| %>
-        <p class="fs-6 py-2 m-0"><span class="fw-bold"><%= comment.author.name %>:</span> <%= comment.text %></p>   
-            <% if can? :destroy, Comment.find_by(author_id: comment.author_id, post_id: comment.post_id)  %>
-                <%=link_to "Remove Comment", "#{@post.id}/comments/#{comment.id}", method: :delete %>
-            <%end%>
+        <p class="fs-6 py-2 m-0"><span class="fw-bold"><%= comment.author.name %>:</span> <%= comment.text %></p>
         <%end%>
     </article>
-   
     <% if user_signed_in? %>
         <%= render "comments/form" %>
     <% end %>

@@ -112,7 +112,6 @@ To run the project, execute the following command:
 👤 **Christian Hakimazana**
 
 - GitHub: [GitHub](https://github.com/juaryimami)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/juhar-yimer)
 
 
