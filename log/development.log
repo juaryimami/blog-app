@@ -1578,3 +1578,92 @@ Migrating to ChangeEmailType (20230523132307)
   [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
 Migrating to ChangeEmailType (20230523132307)
   [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(1508658759281986305)[0m
+Started GET "/users" for 127.0.0.1 at 2023-05-23 18:02:29 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (47.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (121.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+Started GET "/users" for 127.0.0.1 at 2023-05-23 18:02:31 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered collection of users/_user.html.erb [4 times] (Duration: 600.2ms | Allocations: 44538)
+  Rendered collection of users/_user.html.erb [4 times] (Duration: 753.6ms | Allocations: 68686)
+  Rendered users/index.html.erb within layouts/application (Duration: 741.9ms | Allocations: 65697)
+  Rendered users/index.html.erb within layouts/application (Duration: 1141.2ms | Allocations: 96449)
+  Rendered navbar/_nav.html.erb (Duration: 19.7ms | Allocations: 2405)
+  Rendered navbar/_nav.html.erb (Duration: 19.4ms | Allocations: 1577)
+  Rendered layout layouts/application.html.erb (Duration: 1183.8ms | Allocations: 104808)
+  Rendered layout layouts/application.html.erb (Duration: 785.4ms | Allocations: 74175)
+Completed 200 OK in 1201ms (Views: 994.5ms | ActiveRecord: 194.4ms | Allocations: 111278)
+
+
+Completed 200 OK in 789ms (Views: 762.8ms | ActiveRecord: 24.9ms | Allocations: 74737)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2023-05-23 18:02:39 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:12:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_theuser.html.erb (Duration: 2.4ms | Allocations: 1020)
+  [1m[36mPost Load (23.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1 ORDER BY "posts"."created_at" DESC LIMIT $2[0m  [["author_id", 1], ["LIMIT", 3]]
+  ↳ app/views/users/_listpost.html.erb:1
+  Rendered users/_listpost.html.erb (Duration: 28.3ms | Allocations: 1747)
+  Rendered users/show.html.erb within layouts/application (Duration: 33.1ms | Allocations: 3304)
+  Rendered navbar/_nav.html.erb (Duration: 2.7ms | Allocations: 742)
+  Rendered layout layouts/application.html.erb (Duration: 44.0ms | Allocations: 6995)
+Completed 200 OK in 384ms (Views: 21.2ms | ActiveRecord: 33.3ms | Allocations: 25373)
+
+
+Started GET "/users/1/posts" for 127.0.0.1 at 2023-05-23 18:02:45 +0300
+Processing by PostsController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered posts/_theuser.html.erb (Duration: 2.4ms | Allocations: 1029)
+  [1m[36mPost Load (1.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."author_id" = $1[0m  [["author_id", 1]]
+  ↳ app/views/posts/index.html.erb:4
+  Rendered posts/index.html.erb within layouts/application (Duration: 34.5ms | Allocations: 4099)
+  Rendered navbar/_nav.html.erb (Duration: 1.2ms | Allocations: 782)
+  Rendered layout layouts/application.html.erb (Duration: 41.3ms | Allocations: 7992)
+Completed 200 OK in 51ms (Views: 42.9ms | ActiveRecord: 3.0ms | Allocations: 10792)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2023-05-23 18:02:50 +0300
+Processing by PostsController#new as HTML
+Completed 401 Unauthorized in 24ms (ActiveRecord: 0.0ms | Allocations: 2612)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2023-05-23 18:02:51 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.5ms | Allocations: 1256)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 28.9ms | Allocations: 5100)
+  Rendered navbar/_nav.html.erb (Duration: 1.9ms | Allocations: 741)
+  Rendered layout layouts/application.html.erb (Duration: 35.8ms | Allocations: 8963)
+Completed 200 OK in 56ms (Views: 37.9ms | ActiveRecord: 0.0ms | Allocations: 11114)
+
+
+Started GET "/users" for 127.0.0.1 at 2023-05-23 18:02:54 +0300
+Processing by UsersController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/index.html.erb:3
+  Rendered collection of users/_user.html.erb [4 times] (Duration: 7.4ms | Allocations: 2152)
+  Rendered users/index.html.erb within layouts/application (Duration: 15.0ms | Allocations: 4291)
+  Rendered navbar/_nav.html.erb (Duration: 2.5ms | Allocations: 702)
+  Rendered layout layouts/application.html.erb (Duration: 24.0ms | Allocations: 7914)
+Completed 200 OK in 26ms (Views: 22.7ms | ActiveRecord: 2.1ms | Allocations: 8324)
+
+
