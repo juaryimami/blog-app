@@ -162,7 +162,7 @@ If you like this project...
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT]([./MIT.md](https://github.com/juaryimami/blog-app-project/blob/add-devise/MIT)) licensed.
+This project is [MIT](./MIT.md) licensed.
 
 
 <p align="right"><a href="#readme-top">back to top</a></p>
