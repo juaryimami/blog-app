@@ -1,29 +1,15 @@
-<div class="container">
-    <h2 class="fs-5 fw-bold">Create a Post</h2>
-    <%= form_with model: @post, class: "form" do |form| %>
-
-    <% flash.each do |name, msg| %>
-        <div class="alert alert-danger">
-            <%= msg %>
-        </div>
-    <% end %>
-
-
-    <div class="form-section">
-        <p class="form-label"><%= form.label :title %>:</p>
-        <%= form.text_field :title,
-        class: "form-control",
-        placeholder: "Write your title..." %>
+<h1 class="text-blue-600 mt-36">Add A New Post</h1>
+<%= form_with model: @post, url: user_posts_path, method: :post, local: true, scope: :new_post do |form| %>
+  <div class="bg-blue-200 p-4 rounded">
+    <div class="mb-4">
+      <%= form.label :title, class: "text-blue-800 font-bold" %><br>
+      <%= form.text_field :title, class: "bg-white border border-blue-400 p-2 rounded" %>
     </div>
-    <div class="form-section">
-        <p class="form-label"><%= form.label :text %>:</p>
-        <%= form.text_area :text,
-        class: "form-control",
-        placeholder: "Write your post text..." %>
+
+    <div class="mb-4">
+      <%= form.label :text, class: "text-blue-800 font-bold" %><br>
+      <%= form.text_area :text, rows: 9, class: "bg-white border border-blue-400 p-2 rounded" %>
     </div>
-    <div class="form-section mt-4">
-        <%= form.submit class: "btn btn-success me-4" %>
-        <%= link_to "Return", "/users", class: "btn btn-success" %>
-    </div>
-    <% end %>
-</div>
+    <%= form.submit "Click to Add Post", class: "bg-blue-500 text-white p-2 rounded hover:bg-blue-600" %>
+  </div>
+<% end %>

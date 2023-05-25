@@ -1,24 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BlogAppProject</title>
+    <title>BlogApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%# <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> %>
+    <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= render "navbar/nav" %>
-    <div class="container">
-      <% if notice != nil %>
-        <p class="notice alert alert-info"><%= notice %></p>
-      <% end %>
-    </div>
-    
-    <%= yield %>
+  <body class="bg-amber-100">
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+      <%= yield %>
+  
   </body>
 </html>

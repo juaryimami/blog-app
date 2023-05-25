@@ -23,4 +23,8 @@ class Post < ApplicationRecord
     post_counter = author.posts.count
     author.update(post_counter: post_counter)
   end
+
+  def all_comments
+    comments.order(created_at: :desc)
+  end
 end
