@@ -1,8 +1,36 @@
-<div class="container">
-    <%= render "users/theuser" %>
-
-    <%= render "users/listpost" %>
-    <div class="btn-container mt-4">
-        <%= link_to "See all posts", "#{@user.id}/posts", class: "btn btn-success mb-4" %>
+ <div class="main-container flex">
+ <div class="users-wrapper flex">
+    <div class="img-cont">
+      <img class="img-cont", src ="<%= @user.photo %>", size="70x70", alt="userphoto">
     </div>
-</div>
+    <div class="user-details">
+      <h2><%= @user.name %></h2>
+      <p>Number of posts: <%= @user.post_counter %></p>
+    </div>
+ </div>
+
+ <div class="user-bio">
+   <h3>Bio</h3>
+   <p><%= @user.bio %></p>
+ </div>
+
+ <div class="user-posts">
+   <% if @user.recent_posts == nil? %>
+   <p>User has no posts yet</p>
+   <% else %>
+   <% @user.recent_posts.each do |post| %>
+   <%= link_to user_post_path(@user.id, post.id), {:class => "link-button"} do %>
+     <div class="users-post">
+       <h2><%= post.title %></h2>
+       <p><%= post.text %></p>
+       <h4>Comments: <%=post.comment_counter %>, Likes: <%= post.like_counter %></h4>
+     </div>
+     <% end %>
+     <% end %>
+    <% end %>
+
+    <button>
+      <%= link_to "See all posts", user_posts_path(@user), class: "link-button" %>
+    </button>
+ <div>
+ </div>

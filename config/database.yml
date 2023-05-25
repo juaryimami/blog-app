@@ -12,26 +12,29 @@
 #       Install PostgreSQL and put its /bin directory on your path.
 #
 # Configure Using Gemfile
-# gem "pg"
+# gem 'pg'
 #
 default: &default
   adapter: postgresql
   encoding: unicode
+  username: postgres
+  password: 1234
+  host: localhost
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
 
 development:
   <<: *default
   database: blog_app_development
   username: postgres
   password: ju160189bm
+
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: blog_app
+  #username: blog_app_project
 
   # The password associated with the postgres role (username).
   #password:
@@ -78,13 +81,13 @@ test:
 # URL environment variable explicitly:
 #
 #   production:
-#     url: <%= ENV["MY_APP_DATABASE_URL"] %>
+#     url: <%= ENV['MY_APP_DATABASE_URL'] %>
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
 production:
   <<: *default
-  database: blog_app_production
-  username: blog_app
-  password: <%= ENV["BLOG_APP_DATABASE_PASSWORD"] %>
+  database: blog_app_project_production
+  username: blog_app_project
+  password: <%= ENV['BLOG_APP_PROJECT_DATABASE_PASSWORD'] %>

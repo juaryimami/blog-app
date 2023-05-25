@@ -1,8 +1,0 @@
-<h2 class="fs-5 fw-bold">Add a Comment</h2>
-<%= form_with model: [@user, @post, @comment], class: "form" do |f| %>
-  <%= f.text_field :text,
-  placeholder: "Write something...", 
-  required: true,
-  class: "form-control" %>
-  <%= f.submit class: "btn btn-success mt-4" %>
-<% end %>
